@@ -7,11 +7,22 @@ $(function() {
 	$(".add-item").on('click', function(event) {
 		  event.preventDefault();
       var listItem = $('.item-input');
-		  var itemHtml = "<li><span class='item-check'></span><span class='item-text'>" + listItem.val() + "</span><span class='item-remove'></span></li>";
+      //If you add an item with no text, it adds a blank box. This is a bug! Fix it.
+      if(listItem.val().trim() != '') {
+        var itemHtml = "<li><span class='item-check'></span><span class='item-text'>" + listItem.val() + "</span><span class='item-remove'></span></li>";
+        // Add the itemHtml section we created for you above to the shopping-list
+        $('.shopping-list').append(itemHtml);
+        // Remove the text the user entered from item-input
+        listItem.val("");
+        // increment counter
+        var numItems = $('.count').text();
+        $('.count').text(parseInt(numItems, 10) + 1);
+      }
+		  /*var itemHtml = "<li><span class='item-check'></span><span class='item-text'>" + listItem.val() + "</span><span class='item-remove'></span></li>";
       // Add the itemHtml section we created for you above to the shopping-list
       $('.shopping-list').append(itemHtml);
       // Remove the text the user entered from item-input
-      listItem.val("");
+      listItem.val("");*/
 	});
 // -------------------
 
@@ -23,6 +34,9 @@ $(function() {
 	$(".shopping-list").on('click', '.item-remove', function(event) {
       // Use event.currentTarget to remove the shopping item from the shopping list
       $(event.currentTarget).parent().remove();
+      // decrement counter
+      var numItems = $('.count').text();
+      $('.count').text(parseInt(numItems, 10) -1);
 	});
 // -------------------
   
@@ -38,5 +52,9 @@ $(function() {
 //Additional Challenges
 //If you add an item with no text, it adds a blank box. This is a bug! Fix it.
 //Add a counter that tells the user how many items are in your shopping list
+  
+// Additional Additional Challenges
+// highlight the x button when someone hovers over or clicks it
+// lower item count
   
 });
