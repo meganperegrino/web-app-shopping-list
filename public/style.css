@@ -41,15 +41,11 @@ header h1 {
 
 header h2 {
   display: inline;
-  bottom: 0;
-  position: absolute;
-  
-  width: 50%;
+  line-height: 2em;
 }
 
 .count {
-  float: left;
-  width: 50%;
+  display: inline;
 }
 
 header span {
